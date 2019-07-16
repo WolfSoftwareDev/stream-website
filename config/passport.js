@@ -16,7 +16,6 @@ module.exports = function(passport){
                 if(!user){
                     return(done(null, false, {message: 'That email is not Registered'}))
                 }
-            });
             //Match Password
             bcrypt.compare(password, user.password, (err, isMatch)=> {
                 if(err) throw err;
@@ -26,6 +25,7 @@ module.exports = function(passport){
                     return(done(null, false, {message: 'Password Incorrect'}));
                 }
             });
+        });
     }));
     passport.serializeUser(function(user, done) {
        done(null, user.id);
